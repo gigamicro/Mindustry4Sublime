@@ -1,0 +1,164 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+# see https://mindustrygame.github.io/wiki/logic/1-glossary/
+file_extensions:
+  - masm
+scope: source.masm
+
+variables:
+  #draw
+  shape: (clear|color|stroke|line|rect|lineRect|poly|linePoly|triangle|image)
+  #control
+  control: (enabled|shoot|shootp|config|color)
+  #radar/uradar
+  filter: (any|enemy|ally|player|attacker|flying|boss|ground)
+  sort: (distance|health|shield|armor|maxHealth)
+  #op
+  op: (add|sub|mul|div|idiv|mod|exp|equal|not|land|(less|greater)Than(Eq)?|strictEqual|shl|shr|or|and|xor|flip|max|min|angle|len|noise|abs|log|log10|floor|ceil|sqrt|rand|sin|cos|tan|asin|acos|atan)
+  #lookup
+  lookup: (block|unit|item|liquid)
+  #jump
+  comparison: (equal|notEqual|(less|greater)Than(Eq)?|strictEqual|always)
+  #ucontrol
+  ucontrol: (idle|stop|move|approach|boost|pathfind|target|targetp|itemDrop|itemTake|payDrop|payTake|payEnter|mine|flag|build|getBlock|within)
+  #ulocate
+  ulocate: (ore|building|spawn|damaged)
+  group: (core|storage|generator|turret|factory|repair|rally|battery|reactor)
+
+contexts:
+  main:
+    - match: "#"
+      scope: punctuation.definition.comment.masm
+      push:
+        - meta_scope: comment.line.number-sign.masm
+        - match: $\n?
+          pop: true
+
+    - include: keywords
+
+    - match: -?\d+(.\d+)?
+      scope: constant.numeric.masm
+
+    - match: \"
+      scope: punctuation.definition.string.begin.masm
+      push:
+      - meta_scope: string.quoted.double.masm
+      - match: \\.
+        scope: constant.character.escape.masm
+      - match: \n
+        scope: invalid.string.end.masm
+        pop: true
+      - match: \"
+        scope: punctuation.definition.string.end.masm
+        pop: true
+
+    - match: (true|false)
+      scope: constant.language.boolean.masm
+
+    - match: "@\\w+"
+      scope: entity.name.masm
+
+    - match: \w+\d+
+      scope: entity.name.masm
+
+    - match: \w+
+      scope: variable.other.masm
+
+  keywords:
+    - match: ^\s*(read)\b
+      captures:
+        1: keyword.control.masm
+
+    - match: ^\s*(write)\b
+      captures:
+        1: keyword.control.masm
+
+    - match: ^\s*(draw)\s+{{shape}}\b
+      captures:
+        1: keyword.control.masm
+        2: keyword.control.masm
+
+    - match: ^\s*(print)\b
+      captures:
+        1: keyword.control.masm
+
+    - match: ^\s*(drawflush)\b
+      captures:
+        1: keyword.control.masm
+
+    - match: ^\s*(printflush)\b
+      captures:
+        1: keyword.control.masm
+
+    - match: ^\s*(getlink)\b
+      captures:
+        1: keyword.control.masm
+
+    - match: ^\s*(control)\s+{{control}}\b
+      captures:
+        1: keyword.control.masm
+        2: keyword.control.masm
+
+    - match: ^\s*(radar)\s+{{filter}}\s+{{filter}}\s+{{filter}}\s+{{sort}}\b
+      captures:
+        1: keyword.control.masm
+        2: variable.language.masm
+        3: variable.language.masm
+        4: variable.language.masm
+        5: keyword.control.masm
+
+    - match: ^\s*(sensor)\b
+      captures:
+        1: keyword.control.masm
+
+    - match: ^\s*(set)\b
+      captures:
+        1: keyword.control.masm
+
+    - match: ^\s*(op)\s+({{op}})\b
+      captures:
+        1: keyword.control.masm
+        2: keyword.control.masm
+
+    - match: ^\s*(wait)\b
+      captures:
+        1: keyword.control.masm
+
+    - match: ^\s*(lookup)\s+{{lookup}}\b
+      captures:
+        1: keyword.control.masm
+        2: keyword.control.masm
+
+    - match: ^\s*(end)\b
+      captures:
+        1: keyword.control.masm
+
+    - match: ^\s*(jump)\s+(-?[0-9.]+)\s+{{comparison}}\b
+      captures:
+        1: keyword.control.masm
+        2: constant.numeric.masm
+        3: keyword.control.masm
+
+    - match: ^\s*(ubind)\b
+      captures:
+        1: keyword.control.masm
+
+    - match: ^\s*(ucontrol)\s+{{ucontrol}}\b
+      captures:
+        1: keyword.control.masm
+        2: keyword.control.masm
+
+    - match: ^\s*(uradar)\s+{{filter}}\s+{{filter}}\s+{{filter}}\s+{{sort}}\b
+      captures:
+        1: keyword.control.masm
+        2: variable.language.masm
+        3: variable.language.masm
+        4: variable.language.masm
+        5: keyword.control.masm
+
+    - match: ^\s*(ulocate)\s+{{ulocate}}\s+{{group}}\b
+      captures:
+        1: keyword.control.masm
+        2: variable.language.masm
+        3: keyword.control.masm

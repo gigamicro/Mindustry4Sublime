@@ -1,0 +1,97 @@
+# SYNTAX TEST "Packages/Mindustry4Sublime/masm.sublime-syntax"
+
+set danger 30 # ohno
+#^^ keyword.control.masm
+#   ^^^^^^ variable.other.masm
+#          ^^ constant.numeric.masm
+#             ^ comment.line.number-sign.masm punctuation.definition.comment.masm
+#              ^^^^^^ comment.line.number-sign.masm
+sensor power node1 @powerNetStored
+#^^^^^ keyword.control.masm
+#      ^^^^^ variable.other.masm
+#            ^^^^^ entity.name.masm
+#                  ^^^^^^^^^^^^^^^ entity.name.masm
+sensor total node1 @powerNetCapacity
+op div height power total
+op mul height height 176
+op floor height height b
+op floor power power b
+op floor total total b
+op sub oldpos pos 1
+draw color 128 255 128 255 0 0
+#          ^^^ ^^^ ^^^ ^^^ ^ ^ constant.numeric.masm
+jump 12 greaterThan height danger
+#       ^^^^^^^^^^^ keyword.control.masm
+draw color 255 64 64 255 0 0
+draw line oldpos oldh pos height 0 0
+op add pos pos 1
+draw color 80 80 100 255 0 0
+draw rect pos 0 1 176 0 0
+jump 18 lessThan pos 177
+set pos 1
+draw color 255 255 255 255 0 0
+draw line 0 danger 176 danger 0 0
+drawflush display1
+print "Power meter\n========\n\nStored: "
+#     ^ string.quoted.double.masm punctuation.definition.string.begin.masm
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.masm
+#                 ^^ string.quoted.double.masm constant.character.escape.masm
+#                                       ^ string.quoted.double.masm punctuation.definition.string.end.masm
+print power
+print "\nCapacity: "
+print total
+printflush message1
+set oldh height
+draw color 80 80 100 255 0 0
+draw rect 0 0 5 176 0 0
+
+read result cell1 0
+write result cell1 0
+draw clear 0 0 0 0 0 0
+draw image 0 0 @copper 32 0 0
+print "'fr'o'i'g"
+print "frog"
+drawflush display1
+printflush message1
+getlink result 0
+control enabled block1 0 0 0 0
+control shoot block1 0 0 0 0
+control color block1 0 0 0 0
+radar enemy any any distance turret1 1 result
+radar ally flying player maxHealth turret1 1 result
+#^^^^ keyword.control.masm
+#     ^^^^ variable.language.masm
+#          ^^^^^^ variable.language.masmd
+#                 ^^^^^^ variable.language.masmd
+#                        ^^^^^^^^^ keyword.control.masm
+#                                  ^^^^^^^ entity.name.masm
+sensor result block1 @copper
+sensor result block1 @powerCapacity
+set result 0
+op add result a b
+op atan result a b
+op log10 result a b
+wait 0.5
+#    ^^^ constant.numeric.masm
+lookup item result 0
+lookup block result 0
+end
+jump -1 notEqual x false
+#    ^^ constant.numeric.masm
+jump 22 always x false
+jump 22 strictEqual x false
+ubind @poly
+ucontrol move 0 0 0 0 0
+ucontrol approach 0 0 0 0 0
+ucontrol payEnter 0 0 0 0 0
+ucontrol getBlock 0 0 0 0 0
+ucontrol within 0 0 0 0 0
+uradar boss enemy attacker distance 0 1 result
+ulocate building core true @copper outx outy found building
+#^^^^^^          ^^^^ keyword.control.masm
+#       ^^^^^^^^ variable.language.masm
+#                     ^^^^ constant.language.boolean.masm
+#                          ^^^^^^^ entity.name.masm
+#                                  ^^^^ ^^^^ ^^^^^ ^^^^^^^^ variable.other.masm
+ulocate ore core true @copper outx outy found building
+ulocate spawn core true @copper outx outy found building
