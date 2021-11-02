@@ -1,6 +1,6 @@
 # Mindustry Logic for Sublime Text
 Mindustry logic assembly highlighting.
-Install this package via Sublime Package Control at **"Mindustry Assembly"**
+Install this package via Sublime Package Control at **"Mindustry Assembly"** (currently in submission queue)
 
 Commands are
 * read, write
