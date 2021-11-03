@@ -2,11 +2,12 @@
 Mindustry logic assembly highlighting.
 Install this package via Sublime Package Control at **"Mindustry Assembly"** (currently in submission queue)
 
-Commands are
+Commands in MASM as of this document are
 * read, write
 * draw, print, drawflush, printflush
 * getlink, control, radar, sensor, lookup
 * set, op
 * wait, end, jump
 * ubind, ucontrol, uradar, ulocate
+
 Will only highlight commands with correct subcommand structure
