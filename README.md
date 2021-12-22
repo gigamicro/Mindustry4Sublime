@@ -2,7 +2,7 @@
 Mindustry logic assembly highlighting.
 Install this package via Sublime Package Control at **"Mindustry Assembly"** (currently in [submission queue](https://github.com/wbond/package_control_channel/pull/8399))
 
-Commands in MASM as of this document are
+Commands in [MASM](https://mindustrygame.github.io/wiki/logic/1-glossary/) as of this document are
 * read, write
 * draw, print, drawflush, printflush
 * getlink, control, radar, sensor, lookup
