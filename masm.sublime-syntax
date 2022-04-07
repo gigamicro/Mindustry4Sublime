@@ -15,7 +15,7 @@ variables:
   filter: (any|enemy|ally|player|attacker|flying|boss|ground)
   sort: (distance|health|shield|armor|maxHealth)
   #op
-  op: (add|sub|mul|div|idiv|mod|exp|equal|not|land|(less|greater)Than(Eq)?|strictEqual|shl|shr|or|and|xor|flip|max|min|angle|len|noise|abs|log|log10|floor|ceil|sqrt|rand|sin|cos|tan|asin|acos|atan)
+  op: (add|sub|mul|div|idiv|mod|exp|equal|not|land|(?:less|greater)Than(?:Eq)?|strictEqual|shl|shr|or|and|xor|flip|max|min|angle|len|noise|abs|log|log10|floor|ceil|sqrt|rand|sin|cos|tan|asin|acos|atan)
   #lookup
   lookup: (block|unit|item|liquid)
   #jump
